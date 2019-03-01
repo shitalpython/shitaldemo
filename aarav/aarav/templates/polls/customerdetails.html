@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if customer_list %}
+<p>{{customer_list}}</p>
+<table class="table" border="1">
+  <thead>
+    <th hidden>Sr.No</th>
+    <th>Name</th>
+    <th>Contact No</th>
+    <th>Date IN</th>
+    <th>Date OUT</th>
+    <th>Total Bill</th>
+    <th>Advance</th>
+    <th>Balance</th>
+    <th>Action</th>
+  </thead>
+ {% for custmer in customer_list%}
+<tr>
+    <td hidden>{{custmer.id}}</td>
+    <td>{{custmer.customer.name}}</td>
+    <td>{{custmer.customer.contactno}}</td>
+    <td>{{custmer.order_in_date}}</td>
+    <td>{{custmer.order_out_date}}</td>
+    <td>{{custmer.total_bill}}</td>
+    <td>{{custmer.advance}}</td>
+    <td>{{custmer.balance}}</td>
+
+    <td><a href="{{custmer.id}}/Customerorder"><button class="btn btn-primary">select</button></a></td>
+</tr>
+    {% endfor %}
+</table>
+{% else %}
+<h2>No customer found</h2>
+{% endif %}
+
+</body>
+</html>

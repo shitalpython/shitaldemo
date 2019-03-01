@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>vote page</h2>
+{% if questions %}
+<ul>
+
+    <h3>{{questions.title}}</h3>
+    <h3>{{questions.status}}</h3>
+    <h3>{{questions.startdate}}</h3>
+    <h3>{{questions.enddate}}</h3>
+
+
+</ul>
+<form method="post" action="/polls/{{questions.id}}/">
+    {% csrf_token %}
+{% for c in questions.choice %}
+    <label>{{c.text}}</label>
+    <input type="radio" name="answer" value="{{c.id}}">
+
+{% empty %}
+      <p>not available</p>
+{% endfor %}
+    <button type="submit" value="vote">Vote</button>
+    </form>
+{% else %}
+<p>There is no question available.</p>
+{% endif %}
+{% endblock content %}

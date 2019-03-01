@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>List of {{title}}</h2>
+{% if questions %}
+<ul>
+    <h3>{{questions.title}}</h3>
+    <h3>{{questions.status}}</h3>
+    <h3>{{questions.startdate}}</h3>
+    <h3>{{questions.enddate}}</h3>
+</ul>
+{% for c in questions.choice %}
+      <p>{{c.text}} {{c.votes}}</p>
+{% empty %}
+      <p>not available</p>
+{% endfor %}
+{% else %}
+<p>There is no question available.</p>
+{% endif %}
+{% endblock content %}
